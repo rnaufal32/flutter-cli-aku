@@ -31,3 +31,8 @@ vars:
     description:
     default: User
     prompt: Nama model nya apa ?
+  use_equatable:
+    type: boolean
+    description:
+    default: true
+    prompt: Mau pake Equatable gak ?
