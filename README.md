@@ -7,6 +7,12 @@ in `lib/`, and example unit test in `test/`.
 ```
  mason add -g [brick_name] --git-url https://github.com/rnaufal32/flutter-cli-aku --git-path bricks/[brick_name]
 ```
+List bricks
+- riverpod_init
+- new_page
+- new_model
+- new_repository
+- new_usecase
 
 ## Command List
 
