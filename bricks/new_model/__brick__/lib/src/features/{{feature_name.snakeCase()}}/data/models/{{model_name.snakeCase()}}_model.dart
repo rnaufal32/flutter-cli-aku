@@ -1,7 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-{{#use_equatable}}
-import 'package:equatable/equatable.dart';
-{{/use_equatable}}
+{{#use_equatable}}import 'package:equatable/equatable.dart';{{/use_equatable}}
 
 part '{{model_name.snakeCase()}}_model.freezed.dart';
 part '{{model_name.snakeCase()}}_model.g.dart';
@@ -13,7 +11,6 @@ class {{model_name.pascalCase()}}Model with _${{model_name.pascalCase()}}Model {
   const factory {{model_name.pascalCase()}}Model() = _{{model_name.pascalCase()}}Model;
 
   factory {{model_name.pascalCase()}}Model.fromJson(Map<String, dynamic> json) => _${{model_name.pascalCase()}}ModelFromJson(json);
-
   {{#use_equatable}}
   @override
   // TODO: implement props
