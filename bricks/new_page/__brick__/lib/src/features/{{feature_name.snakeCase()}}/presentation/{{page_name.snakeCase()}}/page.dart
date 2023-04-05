@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:auto_route/auto_route.dart';
 
-class {{page_name.pascalCase()}}Page extends ConsumerWidget {
+@RoutePage()
+class {{page_name.pascalCase()}}Page extends HookConsumerWidget {
   const {{page_name.pascalCase()}}Page({super.key});
 
   @override
