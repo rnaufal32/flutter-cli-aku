@@ -8,7 +8,7 @@ import '../../../../../services/http/http_service.dart';
 part 'auth_remote_datasource.g.dart';
 
 @RestApi()
-abstract class {{repository_name.pascalCase()}}RemoteDatasource {}
+abstract class {{repository_name.pascalCase()}}RemoteDatasource {
   factory {{repository_name.pascalCase()}}RemoteDatasource(Dio dio, {String baseUrl}) =
       _{{repository_name.pascalCase()}}RemoteDatasource;
 }
