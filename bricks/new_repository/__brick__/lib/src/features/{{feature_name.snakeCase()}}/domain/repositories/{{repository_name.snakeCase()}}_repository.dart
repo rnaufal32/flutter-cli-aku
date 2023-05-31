@@ -1,10 +1,11 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../../../../helper/repository.dart';
 import '../../data/repositories/{{repository_name.snakeCase()}}_repository.dart';
 import '../../data/datasource/local/{{repository_name.snakeCase()}}_local_datasource.dart';
 import '../../data/datasource/remote/{{repository_name.snakeCase()}}_remote_datasource.dart';
 
-class {{repository_name.pascalCase()}}RepositoryImpl implements {{repository_name.pascalCase()}}Repository {
+class {{repository_name.pascalCase()}}RepositoryImpl with RepositoryDefaultCall implements {{repository_name.pascalCase()}}Repository {
   final {{repository_name.pascalCase()}}LocalDatasource localDatasource;
   final {{repository_name.pascalCase()}}RemoteDatasource remoteDatasource;
 
