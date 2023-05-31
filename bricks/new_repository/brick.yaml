@@ -29,3 +29,7 @@ vars:
     type: string
     defaults: Auth
     prompt: Nama repositorynya apa?
+  use_retrofit:
+    type: boolean
+    default: false
+    prompt: Remote nya pakai retrofit ?
