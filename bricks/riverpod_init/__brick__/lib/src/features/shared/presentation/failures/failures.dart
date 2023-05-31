@@ -17,3 +17,24 @@ Future<bool?> handleFailureWidget({
 
   return null;
 }
+
+class HandleFailureWidget extends StatelessWidget {
+  
+  final Object? error;
+  
+  const HandleFailureWidget({super.key, required this.error});
+  
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          /// TODO IMG ERROR
+          /// TODO TITLE
+          /// TODO MESSAGE
+        ],
+      ),
+    );
+  }
+}
