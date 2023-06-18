@@ -1,17 +1,17 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-part 'router.gr.dart';
+import 'router.gr.dart';
 
 @AutoRouterConfig()
-class AppRouter extends _$AppRouter {
+class AppRouter extends $AppRouter {
   @override
   RouteType get defaultRouteType =>
       const RouteType.material(); //.cupertino, .adaptive ..etc
 
   @override
   final List<AutoRoute> routes = [
-    AutoRoute(page: SplashRoute.page),
+    // AutoRoute(page: SplashRoute.page),
     AutoRoute(page: AuthRouter.page, children: [
 //       AutoRoute(page: SignInRoute.page, path: ''),
     ]),
