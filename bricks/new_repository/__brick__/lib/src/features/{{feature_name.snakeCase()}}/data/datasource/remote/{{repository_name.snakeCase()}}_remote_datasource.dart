@@ -5,7 +5,7 @@ import 'package:retrofit/retrofit.dart';
 
 import '../../../../../services/http/http_service.dart';
 
-part 'auth_remote_datasource.g.dart';
+part '{{repository_name.snakeCase()}}_remote_datasource.g.dart';
 
 @RestApi()
 abstract class {{repository_name.pascalCase()}}RemoteDatasource {
