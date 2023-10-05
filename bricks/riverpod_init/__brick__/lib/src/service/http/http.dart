@@ -5,7 +5,6 @@ import 'package:logger/logger.dart';
 import 'package:{{app_name.snakeCase()}}/src/config/strings.dart';
 
 final httpServiceProvider = Provider.autoDispose((ref) {
-  final logger = Logger();
 
   final dio = Dio(BaseOptions(baseUrl: AppStrings.baseUrl));
 
@@ -25,33 +24,40 @@ final httpServiceProvider = Provider.autoDispose((ref) {
       // };
 
       if (kDebugMode) {
-        logger.d(request.uri);
-        logger.d(request.headers);
+        var debug = {
+          'uri': request.uri,
+          'headers': request.headers,
+        };
 
         if (request.data is FormData) {
           final data = request.data as FormData;
-          for (final item in data.fields) {
-            logger.d('${item.key}: ${item.value}');
-          }
-          for (final item in data.files) {
-            logger.d('${item.key}: ${item.value}');
-          }
+          debug['data'] = {  
+            for (final item in data.fields)
+              item.key: item.value,
+            for (final item in data.files)
+              item.key: item.value, 
+          };
         } else {
-          logger.d(request.data);
+          debug['data'] = request.data;
         }
+
+        Logger().w(debug);
       }
 
       return handler.next(request);
     },
     onError: (e, handler) {
       if (kDebugMode) {
-        logger.e(e.message, e.error, e.stackTrace);
+        Logger().e(e.message, error: e.error, stackTrace: e.stackTrace);
       }
       return handler.next(e);
     },
     onResponse: (e, handler) {
       if (kDebugMode) {
-        logger.d(e.data);
+        Logger().d({
+          'uri': e.requestOptions.uri,
+          'body': e.data,
+        });
       }
       return handler.next(e);
     },

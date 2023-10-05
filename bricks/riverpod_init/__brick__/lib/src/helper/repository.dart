@@ -12,7 +12,7 @@ mixin RepositoryDefaultCall {
       return await api;
     } catch (e, s) {
       if (Platform.environment.containsKey('FLUTTER_TEST') || kDebugMode) {
-        Logger().e('message', e, s);
+        Logger().e('message', error: e, stackTrace: s);
       } else {
         bugsnag.notify(e, s);
       }
