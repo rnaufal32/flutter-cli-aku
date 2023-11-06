@@ -21,10 +21,20 @@ class {{app_name.pascalCase()}}App extends ConsumerWidget {
       child: MaterialApp.router(
         title: AppStrings.appName,
         debugShowCheckedModeBanner: false,
-        builder: (context, child) => GestureDetector(
-          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-          child: child,
-        ),
+        builder: (context, child) {
+          final originalMediaQueryData = MediaQuery.of(context).copyWith(
+            textScaleFactor: 1,
+          );
+          final scaledMediaQueryData = originalMediaQueryData.scale();
+
+          return GestureDetector(
+            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+            child: MediaQuery(
+              data: scaledMediaQueryData,
+              child: child!,
+            ),
+          );
+        },
         routerDelegate: AutoRouterDelegate.declarative(
           router,
           routes: (handler) => [
