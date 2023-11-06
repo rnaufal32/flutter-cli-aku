@@ -8,6 +8,14 @@ import 'package:{{app_name.snakeCase()}}/src/{{app_name.snakeCase()}}.dart';
 void main() async {
   await runZonedGuarded(
     () async {
+      ScaledWidgetsFlutterBinding.ensureInitialized(
+        scaleFactor: (deviceSize) {
+          // screen width used in your UI design
+          const double widthOfDesign = 420;
+          return deviceSize.width / widthOfDesign;
+        },
+      );
+      
       runApp(UncontrolledProviderScope(
         container: await bootstrap(),
         child: const {{app_name.pascalCase()}}App(),
