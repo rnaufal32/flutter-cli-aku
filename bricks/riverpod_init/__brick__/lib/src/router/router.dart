@@ -11,15 +11,13 @@ class AppRouter extends $AppRouter {
 
   @override
   final List<AutoRoute> routes = [
-    // AutoRoute(page: SplashRoute.page),
+    AutoRoute(page: SplashRoute.page),
     AutoRoute(page: AuthRouter.page, children: [
-//       AutoRoute(page: SignInRoute.page, path: ''),
+      AutoRoute(page: SignInRoute.page, path: '', initial: true),
     ]),
     AutoRoute(
       page: MainRouter.page,
-      children: [
-        
-      ],
+      children: [],
     ),
   ];
 }
@@ -35,4 +33,3 @@ class MainPage extends AutoRouter {
 }
 
 final appRouterProvider = Provider((ref) => AppRouter());
-
