@@ -8,6 +8,8 @@ import 'package:{{app_name.snakeCase()}}/src/config/providers.dart'
 Future<ProviderContainer> bootstrap() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
   final container = ProviderContainer(
     overrides: [],
     observers: [],

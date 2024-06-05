@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:{{app_name.snakeCase()}}/src/config/strings.dart';
 import 'package:{{app_name.snakeCase()}}/src/router/router.dart';
 import 'package:reactive_forms/reactive_forms.dart';
+import 'package:scaled_app/scaled_app.dart';
 
 class {{app_name.pascalCase()}}App extends ConsumerWidget {
   const {{app_name.pascalCase()}}App({super.key});
@@ -12,7 +13,6 @@ class {{app_name.pascalCase()}}App extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(appRouterProvider);
-    final authState = ref.watch(authStateProvider);
 
     return ReactiveFormConfig(
       validationMessages: {
@@ -23,7 +23,7 @@ class {{app_name.pascalCase()}}App extends ConsumerWidget {
         debugShowCheckedModeBanner: false,
         builder: (context, child) {
           final originalMediaQueryData = MediaQuery.of(context).copyWith(
-            textScaleFactor: 1,
+            textScaler: TextScaler.linear(1),
           );
           final scaledMediaQueryData = originalMediaQueryData.scale();
 
@@ -35,19 +35,9 @@ class {{app_name.pascalCase()}}App extends ConsumerWidget {
             ),
           );
         },
-        routerDelegate: AutoRouterDelegate.declarative(
-          router,
-          routes: (handler) => [
-            authState.maybeWhen(
-              orElse: () => const SplashRoute(),
-              data: (data) => data != null
-                  ? const MainRouter()
-                  : const AuthRouter(),
-            ),
-          ],
-        ),
-        routeInformationParser: router.defaultRouteParser(),
+        routerConfig: router.config(),
         theme: ThemeData.light(useMaterial3: true).copyWith(
+          textTheme: GoogleFonts.rubikTextTheme(),
           colorScheme: const ColorScheme.light(
             primary: Colors.black,
           ),

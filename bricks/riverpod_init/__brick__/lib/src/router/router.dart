@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'router.gr.dart';
 
 @AutoRouterConfig()
-class AppRouter extends $AppRouter {
+class AppRouter extends $AppRouter implements AutoRouteGuard {
   @override
   RouteType get defaultRouteType =>
       const RouteType.material(); //.cupertino, .adaptive ..etc
@@ -12,19 +12,26 @@ class AppRouter extends $AppRouter {
   @override
   final List<AutoRoute> routes = [
     AutoRoute(page: SplashRoute.page),
-    AutoRoute(page: AuthRouter.page, children: [
-      AutoRoute(page: SignInRoute.page, path: '', initial: true),
-    ]),
+    AutoRoute(page: SignInRoute.page,
     AutoRoute(
       page: MainRouter.page,
+      initial: true,
       children: [],
     ),
   ];
-}
 
-@RoutePage(name: 'AuthRouter')
-class AuthPage extends AutoRouter {
-  const AuthPage({super.key});
+  @override
+  void onNavigation(NavigationResolver resolver, StackRouter router) {
+    final user = FirebaseAuth.instance.currentUser;
+
+    if (user != null || resolver.route.name == SignInRoute.name) {
+      resolver.next();
+    } else {
+      resolver.redirect(SignInRoute(onSigned: (logged) {
+        resolver.resolveNext(logged, reevaluateNext: false);
+      }));
+    }
+  }
 }
 
 @RoutePage(name: 'MainRouter')

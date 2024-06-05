@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:{{app_name.snakeCase()}}/src/bootstrap.dart';
 import 'package:{{app_name.snakeCase()}}/src/{{app_name.snakeCase()}}.dart';
+import 'package:scaled_app/scaled_app.dart';
 
 void main() async {
   await runZonedGuarded(
