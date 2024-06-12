@@ -1,5 +1,9 @@
+import 'dart:io';
 import 'package:mason/mason.dart';
 
 void run(HookContext context) {
-  context.logger.info('hello!');
+  final progress = context.logger.progress('Installing packages');
+  await Process.run('dart', ['pub', 'run', 'build_runner', 'build', '--delete-conflicting-outputs']);
+  progress.complete();
+
 }
