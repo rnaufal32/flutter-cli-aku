@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:{{app_name.snakeCase()}}/src/bootstrap.dart';
 import 'package:{{app_name.snakeCase()}}/src/{{app_name.snakeCase()}}.dart';
 import 'package:scaled_app/scaled_app.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() async {
   await runZonedGuarded(
