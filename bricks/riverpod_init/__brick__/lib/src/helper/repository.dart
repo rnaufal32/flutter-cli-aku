@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:bugsnag_flutter/bugsnag_flutter.dart';
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
 
@@ -14,7 +13,7 @@ mixin RepositoryDefaultCall {
       if (Platform.environment.containsKey('FLUTTER_TEST') || kDebugMode) {
         Logger().e('message', error: e, stackTrace: s);
       } else {
-        bugsnag.notify(e, s);
+
       }
       throw DefaultFailures();
     }
