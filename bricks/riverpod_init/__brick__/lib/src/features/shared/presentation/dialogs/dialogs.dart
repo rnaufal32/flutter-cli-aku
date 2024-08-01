@@ -1,17 +1,15 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../config/strings.dart';
-import '../../../../helper/theme.dart';
 
 Future<void> showLoading(BuildContext context) async {
   await showDialog(
     context: context,
     barrierDismissible: false,
-    builder: (context) => WillPopScope(
-      onWillPop: () => Future.value(false),
-      child: const Center(
+    builder: (context) => const PopScope(
+      canPop: false,
+      child: Center(
         child: CircularProgressIndicator(),
       ),
     ),
@@ -29,7 +27,7 @@ Future<bool?> showAlertDialog(BuildContext context, String message) async {
       content: Text(message),
       actions: [
         TextButton(
-          onPressed: () => context.popRoute(true),
+          onPressed: () => context.maybePop(true),
           child: const Text('OK'),
         ),
       ],
@@ -49,11 +47,11 @@ Future<bool?> showDefaultFailuresDialog(BuildContext context, String message,
       content: Text(message),
       actions: [
         TextButton(
-          onPressed: () => context.popRoute(),
+          onPressed: () => context.maybePop(),
           child: const Text('Tutup'),
         ),
         TextButton(
-          onPressed: () => context.popRoute(true),
+          onPressed: () => context.maybePop(true),
           child: const Text('Coba Lagi'),
         ),
       ],
@@ -77,11 +75,11 @@ Future<bool?> showConfirmDialog(
       content: Text(message),
       actions: [
         TextButton(
-          onPressed: () => context.popRoute(),
+          onPressed: () => context.maybePop(),
           child: Text(negativeBtn),
         ),
         TextButton(
-          onPressed: () => context.popRoute(true),
+          onPressed: () => context.maybePop(true),
           child: Text(positiveBtn),
         ),
       ],
