@@ -13,6 +13,7 @@ List bricks
 - new_model
 - new_repository
 - new_usecase
+- new_page_katana
 
 ## Command List
 
