@@ -5,7 +5,7 @@ part '{{model_name.snakeCase()}}_model.freezed.dart';
 part '{{model_name.snakeCase()}}_model.g.dart';
 
 @freezed
-class {{model_name.pascalCase()}}Model with _${{model_name.pascalCase()}}Model {{#use_equatable}}implements Equatable {{/use_equatable}}{
+sealed class {{model_name.pascalCase()}}Model with _${{model_name.pascalCase()}}Model {{#use_equatable}}implements Equatable {{/use_equatable}}{
   const {{model_name.pascalCase()}}Model._();
   
   const factory {{model_name.pascalCase()}}Model() = _{{model_name.pascalCase()}}Model;
