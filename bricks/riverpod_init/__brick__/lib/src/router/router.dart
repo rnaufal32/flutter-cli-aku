@@ -5,25 +5,19 @@ import 'router.gr.dart';
 
 @AutoRouterConfig()
 class AppRouter extends RootStackRouter {
+  final Ref ref;
+  AppRouter({required this.ref});
+
   @override
   RouteType get defaultRouteType =>
-      const RouteType.material(); //.cupertino, .adaptive ..etc
+      const RouteType.adaptive(); //.cupertino, .adaptive ..etc
 
   @override
   final List<AutoRoute> routes = [
-    AutoRoute(page: SplashRoute.page),
+    AutoRoute(page: SplashRoute.page, initial: true),
     AutoRoute(page: SignInRoute.page),
-    AutoRoute(
-      page: MainRouter.page,
-      initial: true,
-      children: [],
-    ),
+    AutoRoute(page: MainRouter.page),
   ];
 }
 
-@RoutePage(name: 'MainRouter')
-class MainPage extends AutoRouter {
-  const MainPage({super.key});
-}
-
-final appRouterProvider = Provider((ref) => AppRouter());
+final appRouterProvider = Provider((ref) => AppRouter(ref: ref));

@@ -6,6 +6,7 @@ import 'package:{{app_name.snakeCase()}}/src/bootstrap.dart';
 import 'package:{{app_name.snakeCase()}}/src/{{app_name.snakeCase()}}.dart';
 import 'package:scaled_app/scaled_app.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:logger/logger.dart';
 
 void main() async {
   await runZonedGuarded(
@@ -31,12 +32,39 @@ void main() async {
         return Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.red,
-            title: const Text('An error occurred'),
+            title: const Text('Error Occurred'),
+            centerTitle: true,
           ),
-          body: Center(child: Text(details.toString())),
+          body: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(
+                  Icons.warning_amber_rounded,
+                  color: Colors.red,
+                  size: 80,
+                ),
+                const SizedBox(height: 24),
+                Text(
+                  'Oops! Something went wrong.',
+                  style: Theme.of(context).textTheme.headlineSmall,
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  details.exception.toString(),
+                  style: Theme.of(context).textTheme.bodyMedium,
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+          ),
         );
       };
     },
-    (err, stack) {},
+    (err, stack) {
+      Logger().e('Uncaught exception', error: err, stackTrace: stack);
+    },
   );
 }
